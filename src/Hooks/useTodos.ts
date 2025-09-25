@@ -10,16 +10,23 @@ interface Todo {
 
 
 
-const useTodo = () => {
+const useTodo = (userId:number) => {
   // Fetch function for React Query
 const fetchTodos = async (): Promise<Todo[]> => {
-  const res = await axios.get('https://jsonplaceholder.typicode.com/todos');
+  const res = await axios.get('https://jsonplaceholder.typicode.com/todos',
+{
+  params:{
+    userId
+  }
+}
+  );
   return res.data;
 };
 return useQuery<Todo[],Error>({
-    queryKey: ['todos'],
+    queryKey: ['users',userId,'todos'],
     queryFn: fetchTodos,
+
 })
- 
+
 }
 export default useTodo 
