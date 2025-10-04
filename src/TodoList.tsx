@@ -39,8 +39,14 @@ function TodoList() {
       {
         onSuccess: () => {
           setNewTodoTitle("");
+          console.log("Success")
         },
-      }
+         onSettled: () => {//runs after onSucceed.
+          setNewTodoTitle("");
+          console.log("Success1")
+        },
+      },
+      
     );
   };
 
